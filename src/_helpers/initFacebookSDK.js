@@ -10,7 +10,7 @@ export function initFacebookSDK() {
                 xfbml: true,
                 version: 'v9.0'
             });
-
+            
             // auto authenticate with the api if already logged in with facebook
             window.FB.getLoginStatus(({ authResponse }) => {
                 if (authResponse) accountService.apiAuthenticate(authResponse.accessToken).then(resolve);

@@ -13,9 +13,13 @@ async function apiAuthenticate(accessToken) {
     // authenticate with the api using a facebook access token,
     // on success the api returns an account object with a JWT auth token
     const response = await authenticate(accessToken);
-    const account = response.data;
+    const account = response.body;
+
+    console.log(account); // DEBUG: logs backend responses's body
+
     accountSubject.next(account);
-    startAuthenticateTimer();
+
+    //startAuthenticateTimer(); TODO: further implement JWT stuff
     return account;
 }
 
@@ -24,7 +28,15 @@ async function login() {
     const { authResponse } = await new Promise(window.FB.login);
     if (!authResponse) return;
 
+    /*console.log(authResponse); // DEBUG: logs response from FB
+
+    authenticate(authResponse.accessToken)
+    .then(data => {
+        console.log(data) // DEBUG: logs response from backend over access token verification
+    })*/
+
     await apiAuthenticate(authResponse.accessToken);
+
     /* TODO
     // get return url from location state or default to home page
     const { from } = history.location.state || { from: { pathname: "/" } };
