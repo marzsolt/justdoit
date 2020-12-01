@@ -7,6 +7,9 @@ def lambda_handler(event, context):
     myData = graph.request('/me?fields=id,name,birthday,email')
     
     return {
+        'headers': { 
+            'Content-Type': 'application/json'             
+        },
         'statusCode': 200,
         'body': myData
     }
