@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/aws_lambda/venvLogin
 
 # testing
 /coverage
