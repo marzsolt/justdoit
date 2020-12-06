@@ -9,7 +9,8 @@ import initFacebookSDK from './_helpers/initFacebookSDK';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // wait for facebook sdk before startup
-initFacebookSDK().then(startApp);
+initFacebookSDK();
+startApp();
 
 function startApp() {
   ReactDOM.render(
